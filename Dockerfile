@@ -1,7 +1,7 @@
 FROM python:3.12.4
 
 # install psycopg2 dependencies
-RUN apt-get update && apt-get install -y \
+RUN apt-get update --no-cash && apt-get install -y \
     libpq-dev \
     gcc \
     netcat-openbsd
