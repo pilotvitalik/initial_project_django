@@ -1,20 +1,18 @@
-FROM python:3.12.4
+FROM python:3.10-alpine
 
 # install psycopg2 dependencies
-RUN apt-get update --no-cash && apt-get install -y \
-    libpq-dev \
-    gcc \
-    netcat-openbsd
+RUN apk add --update --no-cache --virtual .tmp-build-deps \
+        libpq-dev gcc postgresql-dev
 
 # set work directory
-WORKDIR /app
+WORKDIR /project
 
 # install dependencies
-COPY requirements.txt /app/
+COPY requirements.txt /project/
 RUN pip install --no-cache-dir -r requirements.txt
 
 # copy project
-COPY . /app/
+COPY . .
 
 # Копируем скрипт и делаем его исполняемым
 COPY entrypoint.sh /entrypoint.sh
