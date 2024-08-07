@@ -2,7 +2,7 @@ FROM python:3.10-alpine
 
 # install psycopg2 dependencies
 RUN apk add --update --no-cache --virtual .tmp-build-deps \
-        libpq-dev gcc postgresql-dev
+        libpq-dev gcc postgresql-dev python3-dev
 
 # set work directory
 WORKDIR /project
